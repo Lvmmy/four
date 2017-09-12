@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"  >
+		<link rel="stylesheet" href="css/one.css" />
+		<link rel="stylesheet" href="../swiper/swiper.min.css" />
+		<!--<link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />-->
+		<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+		<script src="../js/angular.min.js"></script>
+		<script src="../js/angular-route1.4.5.js"></script>
+		<script src="../swiper/swiper.min.js"></script>
+		<script src="../js/iscroll.js"></script>
+		<!--<script src="../../bootstrap/js/bootstrap.js"></script>-->
+		<title>京东秒杀</title>
+	</head>
+	<body>
+		<div id="big" ng-app="app" ng-controller="ctrl">
+			<header>
+				<input type="text" placeholder="大疆炒鸡品牌" />
+				<a href="#">登录</a>
+			</header>
+			
+			
+			<div id="box">
+				<div>
+					<ng-view></ng-view>
+				</div>
+			</div>
+			
+			
+			<footer>
+				<ul>
+					<li>
+						<img src="images/jd_37.png" alt="" />
+						<a href="#tj">推荐</a>
+					</li>
+					<li>
+						<img src="images/jd_39.png" alt="" />
+						<a href="#fl">分类</a>
+					</li>
+					<li>
+						<img src="images/jd_41.png" alt="" />
+						<a href="#fx">发现</a>
+					</li>
+					<li>
+						<img src="images/jd_43.png" alt="" />
+						<a href="#gw">购物车</a>
+					</li>
+					<li>
+						<img src="images/jd_45.png" alt="" />
+						<a href="#my">我的</a>
+					</li>
+				</ul>
+			</footer>
+			
+		</div>
+
+
+<script>
+
+	
+	var app=angular.module('app',["ngRoute"])
+	app.config(function($routeProvider){
+		$routeProvider.when('/tj',{templateUrl:"one.html",controller:"ctrl"})
+		$routeProvider.when('/fl',{template:"<h1>这里是电脑✌</h1>"})
+		$routeProvider.when('/fx',{template:"<h1>这里是手机✌</h1>"})
+		$routeProvider.when('/gw',{template:"<h1>这里是手机✌</h1>"})
+		$routeProvider.when('/my',{template:"<h1>这里是手机✌</h1>"})
+		$routeProvider.otherwise("/tj",{redirectTo:"<h1>die这里是肺叶，不，废页</h1>"})
+		
+	})
+	
+//	app.config(function($routeProvider){
+//		$routeProvider.when('/sy',{templateUrl:"one.html",controller:"ctrl"})
+//		$routeProvider.when('/xx',{template:"<h1>这里是电脑✌</h1>"})
+//		$routeProvider.when('/gw',{template:"<h1>这里是手机✌</h1>"})
+//		$routeProvider.when('/my',{template:"<h1>这里是手机✌</h1>"})
+//		$routeProvider.otherwise("/sy",{redirectTo:"<h1>die这里是肺叶，不，废页</h1>"})
+//		
+//	})
+
+
+
+
+		app.controller("ctrl",function($scope,$http,$timeout,$interval){
+				
+				$timeout(function(){
+						var Swp= new Swiper('#banner',{
+							pagination:'.swiper-pagination',
+							paginationClickable:true,
+						//		autoplay:200
+						loop:true
+						})
+						
+						var IS = new IScroll('#box')
+		})
+				
+				
+//				$http({
+//					method:'get',
+//					url:'http://127.0.0.1:7575'
+//				}).then(function(res){
+//				$scope.obj=res.data;
+//				console.log(res.data)	
+//			},function(){
+//				console.log('失败')
+//			})
+	
+	
+		$scope.future= new Date("2017/9/5 21:10:00").getTime()
+			console.log($scope.future)
+			$time=$interval(function(){
+				$scope.now=new Date().getTime();  //现在的系统时间
+				$scope.date=new Date($scope.future-$scope.now)
+				console.log($scope.date)
+				
+				if($scope.now>=$scope.future-1000){
+					$interval.cancel($time);
+					alert('时间到了')
+				}
+				
+			},1000)
+	
+	})
+</script>
+
+	</body>
+</html>
